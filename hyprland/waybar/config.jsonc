@@ -1,0 +1,158 @@
+{
+  "layer": "top",
+  "position": "top",
+  "margin-bottom": -10,
+  "spacing" : 0,
+  "reload_style_on_change": true,
+
+
+  "modules-left": [
+  "custom/uptime",
+  "hyprland/workspaces",
+  "cpu",
+  "memory"
+  ],
+
+  "modules-center": ["clock"],
+
+  "modules-right": [
+    "custom/pomodoro",
+    "bluetooth",
+    "network",
+    "pulseaudio", 
+    "backlight",
+    "battery"
+  ],
+/////////////////////////////////////////////////////////////////////////////
+////////////////////////----- Modules -----//////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
+
+  "hyprland/workspaces": {
+    "format": "{name}: {icon}",
+    "format-icons": {
+      "active": "󱓻",
+      "default": ""
+    }
+  },
+
+  "bluetooth": {
+    "format": "󰂲",
+    "format-on": "{icon}",
+    "format-off": "{icon}", 
+    "format-connected":"{icon}",
+    "format-icons":{
+        "on":"󰂯",
+        "off": "󰂲",
+        "connected": "󰂱" 
+        },
+    "on-click": "blueman-manager",
+    "tooltip-format-connected":"{device_enumerate}"
+  },
+
+  "custom/music": {
+    "format": "  {}",
+    "escape": true,
+    "interval": 5,
+    "tooltip": false,
+    "exec": "playerctl metadata --format='{{ artist }} - {{ title }}'",
+    "on-click": "playerctl play-pause",
+    "max-length": 50
+  },
+
+    "clock": {
+      "format": "{:%H:%M:%S     %A, %d}",
+      "format-alt": "{:%A, %B %d, %Y (%R)}  ",
+      "interval" : 1,
+      "tooltip-format": "<tt><small>{calendar}</small></tt>",
+      "calendar": {
+                  "mode"          : "year",
+                  "mode-mon-col"  : 3,
+                  "weeks-pos"     : "right",
+                  "on-scroll"     : 1,
+                  "format": {
+                            "months":     "<span color='#ffead3'><b>{}</b></span>",
+                            "days":       "<span color='#ecc6d9'><b>{}</b></span>",
+                            "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
+                            "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
+                            "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
+                            }
+                  },
+      "actions":  {
+                  "on-click-right": "mode"
+                  }
+    },
+
+"network": {
+  "format-wifi": "{icon}",
+  "format-ethernet": "󰈀",
+  "format-disconnected": "󰤫",
+  "format-disabled": "󰤮",
+  "format-linked": "",
+  "format-icons": ["󰤟","󰤢","󰤥","󰤨"],
+  "interval": 5,
+  "tooltip-format": "{essid} ({signalStrength}%)\n{bandwidthTotalOctets}",
+  "on-click": "~/.config/rofi/rofi-wifi-menu.sh",
+  "on-click-right": "nmcli device wifi rescan"
+},
+
+  "cpu": {
+    "interval": 1,
+    "format": "  {icon0}{icon1}{icon2}{icon3} {usage:>2}%",
+    "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
+    "on-click": "ghostty -e htop"
+  },
+
+  "memory": {
+    "interval": 15,
+    "format": "  {used:0.1f}G/{total:0.1f}G",
+    "tooltip-format": "Memory"
+  },
+
+  "custom/uptime": {
+    "format": "{}",
+    "format-icon": [""], 
+    "tooltip": false,
+    "interval": 1600,
+    "exec": "$HOME/.config/waybar/scripts/uptime.sh"
+  },
+  
+  "backlight": {
+        "format": "{icon}",
+        "format-icons": ["󰌶","󱩎", "󱩏", "󱩐","󱩑","󱩒","󱩓","󱩔","󱩕","󱩖","󰛨"],
+        "tooltip": true,
+        "tooltip-format" : "{percent}"
+  },
+  
+  "pulseaudio": {
+    "format": "{icon}  {volume}%",
+    "format-muted": "",
+    "format-icons": {
+      "default": ["", "", " "]
+    },
+    "on-click": "pavucontrol"
+  },
+
+  "battery": {
+        "interval":2,
+        "states": {
+            // "good": 95,
+            "warning": 30,
+            "critical": 14
+        },
+        "format": "{icon}  {capacity}%",
+        "format-full": "{icon}  {capacity}%",
+        "format-charging": "󱐌{icon} {capacity}%",
+        "format-plugged": "󱐌{icon} {capacity}%",
+        "format-alt": "󰐦 {power}W/h 󰔟{time}",
+        // "format-good": "", // An empty format will hide the module
+        // "format-full": "",
+        "format-icons": ["󰂎 󱡔","󰂎 󰝤","󰂎 󰝤󱡔","󱊡 󰝤󰝤","󱊡 󰝤󰝤󱡔","󱊡 󰝤󰝤󰝤","󱊡 󰝤󰝤󰝤󱡔","󱊡 󰝤󰝤󰝤󰝤","󱊢 󰝤󰝤󰝤󰝤󱡔","󱊢 󰝤󰝤󰝤󰝤󰝤","󱊢 󰝤󰝤󰝤󰝤󰝤󱡔","󱊢 󰝤󰝤󰝤󰝤󰝤󰝤","󱊢 󰝤󰝤󰝤󰝤󰝤󰝤󱡔","󱊢 󰝤󰝤󰝤󰝤󰝤󰝤󰝤","󱊢 󰝤󰝤󰝤󰝤󰝤󰝤󰝤󱡔","󱊣 󰝤󰝤󰝤󰝤󰝤󰝤󰝤󰝤","󱊣 󰝤󰝤󰝤󰝤󰝤󰝤󰝤󰝤󱡔","󱊣 󰝤󰝤󰝤󰝤󰝤󰝤󰝤󰝤󰝤","󱊣 󰝤󰝤󰝤󰝤󰝤󰝤󰝤󰝤󰝤󱡔","󱊣 󰝤󰝤󰝤󰝤󰝤󰝤󰝤󰝤󰝤󰝤"]
+  },
+  
+  "custom/lock": {
+  "tooltip": false,
+  "on-click": "sh -c '(sleep 0s; hyprlock)' & disown",
+  "format" : ""
+  }
+
+}
