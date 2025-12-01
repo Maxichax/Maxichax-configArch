@@ -28,3 +28,13 @@ alias steam="STEAM_FORCE_DESKTOPUI_SCALING=1 QT_QPA_PLATFORM=xcb steam"
 
 # Starship
 eval "$(starship init zsh)"
+
+#Makes a history file
+HISTFILE="$ZINIT_HOME/.zsh_history"
+HISTSIZE=50000
+SAVEHIST=50000
+
+setopt APPEND_HISTORY
+setopt INC_APPEND_HISTORY
+setopt SHARE_HISTORY
+setopt HIST_SAVE_NO_DUPS
